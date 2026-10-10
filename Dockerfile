@@ -52,7 +52,9 @@ RUN patchright install-deps chromium && \
 # host directory's ownership and are prepared by the documented login command.
 RUN install -d -m 0700 -o pwuser -g pwuser /home/pwuser/.linkedin-mcp
 
-COPY --chmod=755 scripts/docker-entrypoint.sh /usr/local/bin/linkedin-mcp-entrypoint
+COPY scripts/docker-entrypoint.sh /usr/local/bin/linkedin-mcp-entrypoint
+RUN sed -i 's/\r$//' /usr/local/bin/linkedin-mcp-entrypoint && \
+    chmod 755 /usr/local/bin/linkedin-mcp-entrypoint
 
 # A full headed browser on a virtual display. No window reaches the host, and
 # HEADLESS stays overridable for anyone who deliberately wants Chromium's real
