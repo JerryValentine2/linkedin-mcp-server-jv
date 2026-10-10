@@ -71,4 +71,4 @@ USER pwuser
 # expected `docker stop` path to success. Without an init, Chromium subprocesses
 # orphaned onto PID 1 would also accumulate as zombies.
 ENTRYPOINT ["tini", "-e", "143", "--", "linkedin-mcp-entrypoint", "python", "-m", "linkedin_mcp_server"]
-CMD []
+CMD ["--transport", "streamable-http", "--host", "0.0.0.0", "--port", "8080"]
